@@ -1,5 +1,5 @@
 # Portfolio Manager
-Stocks Portfolio Manager using CQRS and Kafka.
+Stocks Portfolio Manager using CQRS and EventSourcing.
 
 # Tech
 - Spring Boot (https://www.spring.io)
