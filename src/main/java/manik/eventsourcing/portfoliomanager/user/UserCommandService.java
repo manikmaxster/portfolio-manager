@@ -21,22 +21,22 @@ public class UserCommandService {
         this.commandGateway = commandGateway;
     }
 
-    public CompletableFuture<UUID> createUser(UserCreateDto userCreateDto){
-        return commandGateway.send(new CreateUserCommand(UUID.randomUUID(), userCreateDto.getName(), userCreateDto.getUsername(), userCreateDto.getEmail()));
+    public CompletableFuture<String> createUser(UserCreateDto userCreateDto){
+        return commandGateway.send(new CreateUserCommand(UUID.randomUUID().toString(), userCreateDto.getName(), userCreateDto.getUsername(), userCreateDto.getEmail()));
     }
 
-    public CompletableFuture<UUID> updateUser(String userId, UserUpdateDto userUpdateDto){
+    public CompletableFuture<String> updateUser(String userId, UserUpdateDto userUpdateDto){
         return commandGateway.send(new UpdateUserCommand(
-                UUID.fromString(userId),
+                userId,
                 userUpdateDto.getName(),
                 userUpdateDto.getUsername(),
                 userUpdateDto.getEmail()
         ));
     }
 
-    public CompletableFuture<UUID> changeUserStatus(String userId, UserChangeStatusDto userChangeStatusDto){
+    public CompletableFuture<String> changeUserStatus(String userId, UserChangeStatusDto userChangeStatusDto){
         return commandGateway.send(new ChangeUserStatusCommand(
-                UUID.fromString(userId),
+                userId,
                 userChangeStatusDto.getStatus()
         ));
     }

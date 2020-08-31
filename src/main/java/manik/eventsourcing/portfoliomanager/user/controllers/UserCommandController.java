@@ -7,7 +7,7 @@ import manik.eventsourcing.portfoliomanager.user.dtos.UserCreateDto;
 import manik.eventsourcing.portfoliomanager.user.dtos.UserUpdateDto;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
+import javax.validation.Valid;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
@@ -22,17 +22,17 @@ public class UserCommandController {
     }
 
     @PostMapping
-    public CompletableFuture<UUID> createUser(@RequestBody UserCreateDto userCreateDto){
+    public CompletableFuture<String> createUser(@RequestBody @Valid UserCreateDto userCreateDto){
         return userCommandService.createUser(userCreateDto);
     }
 
     @PutMapping(value = "{userId}")
-    public CompletableFuture<UUID> updateUser(@PathVariable(value = "userId") String userId, @RequestBody UserUpdateDto userUpdateDto){
+    public CompletableFuture<String> updateUser(@PathVariable(value = "userId") String userId, @RequestBody @Valid UserUpdateDto userUpdateDto){
         return userCommandService.updateUser(userId, userUpdateDto);
     }
 
-    @PutMapping(value = "{userId}")
-    public CompletableFuture<UUID> changeUserStatus(@PathVariable(value = "userId") String userId, @RequestBody UserChangeStatusDto userChangeStatusDto){
+    @PutMapping(value = "/changeStatus/{userId}")
+    public CompletableFuture<String> changeUserStatus(@PathVariable(value = "userId") String userId, @RequestBody @Valid UserChangeStatusDto userChangeStatusDto){
         return userCommandService.changeUserStatus(userId, userChangeStatusDto);
     }
 }

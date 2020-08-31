@@ -13,13 +13,11 @@ import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
 
-import java.util.UUID;
-
 @Aggregate
 public class UserAggregate {
 
     @AggregateIdentifier
-    private UUID id;
+    private String id;
     private String name;
     private String username;
     private String email;
